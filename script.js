@@ -78,8 +78,8 @@ function hintText() {
     let arr = currentWord.english.split(' ');
     for (let i=0; i < arr.length; i++) {
         let word = arr[i];
-        if (word.length <= 2) text += `__  `;
-        else text += `${word[0]}____${word[word.length - 1]}  `;
+        if (word.length <= 3) text += `___　`;
+        else text += `${word[0]}____${word[word.length - 1]}　`;
     }
     return text;
 }
@@ -127,7 +127,7 @@ function launchConfetti() {
     document.body.appendChild(container);
 
     // 生成多個彩帶
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 500; i++) {
         const confetti = document.createElement("div");
         confetti.classList.add("confetti");
 
@@ -140,10 +140,10 @@ function launchConfetti() {
         container.appendChild(confetti);
     }
 
-    // 自動清除彩帶容器（3秒後）
+    // 自動清除彩帶容器（4秒後）
     setTimeout(() => {
         document.body.removeChild(container);
-    }, 3000);
+    }, 10000);
 }
 
 // 隨機顏色生成
