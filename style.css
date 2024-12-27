@@ -1,0 +1,149 @@
+/* 基本設置 */
+body {
+    background-color: #1e1e1e;  /* 暗色背景 */
+    color: #f1f1f1;  /* 文字顏色 */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* 讓頁面垂直居中 */
+}
+
+h1 {
+    position: absolute;
+    top: 20px;
+    margin-bottom: 10px;
+    font-size: 36px; /* 增大標題字體大小 */
+}
+
+/* 計數器放置在右上角 */
+#counter {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 24px; /* 增大計數器文字大小 */
+    background-color: rgba(0, 0, 0, 0.5); /* 半透明背景 */
+    padding: 10px 15px; /* 增加內邊距 */
+    border-radius: 5px;
+}
+
+/* 單字卡樣式 */
+#word-card {
+    background-color: #2d2d2d;  /* 暗色卡片背景 */
+    padding: 20px;
+    border-radius: 10px;
+    width: 600px;  /* 增加卡片寬度 */
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    min-height: 250px;  /* 保證單字卡有最小高度 */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* 使內容間隔均勻 */
+    align-items: center;  /* 使內容水平居中 */
+}
+
+/* 中文與提示文字樣式 */
+#chinese, #hint {
+    margin: 10px 0;
+    font-size: 26px; /* 增大文字大小 */
+}
+
+/* 輸入框樣式 */
+input[type="text"] {
+    width: 80%;
+    padding: 12px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    color: white;
+    font-size: 18px; /* 增大輸入框中文字大小 */
+    text-align: center;  /* 使輸入框內的文字水平居中 */
+}
+
+/* 去除輸入框焦點時的發光效果 */
+input[type="text"]:focus {
+    outline: none;
+    box-shadow: none;  /* 取消輸入框聚焦時的陰影 */
+}
+
+/* 結果顯示樣式 */
+#result {
+    margin-top: 20px;
+    font-size: 20px; /* 增大結果顯示文字大小 */
+    word-wrap: break-word; /* 確保結果自動換行 */
+}
+
+/* 開始按鈕樣式 */
+button {
+    background-color: #4CAF50;  /* 綠色 */
+    color: white;
+    border: none;
+    padding: 12px 50px;
+    margin-top: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px; /* 增大按鈕文字大小 */
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#word-list-selection {
+    background-color: transparent;
+    color: #ffffff;
+    padding: 20px;
+    width: 60%;
+    margin: 20px auto;
+    text-align: center;
+}
+
+#word-list-selection .options-container {
+    display: flex;
+    flex-wrap: wrap; /* 如果項目過多，會自動換行 */
+    gap: 20px; /* 每個選項之間的間距 */
+    justify-content: center; /* 選項水平居中 */
+}
+
+#word-list-selection label {
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+#word-list-selection input[type="checkbox"] {
+    display: none; /* 隱藏預設勾選框 */
+}
+
+#word-list-selection input[type="checkbox"] + span {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    border: 2px solid #ffffff;
+    border-radius: 4px;
+    margin-right: 10px;
+    position: relative;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+#word-list-selection input[type="checkbox"]:checked + span {
+    background-color: #4caf50;
+    border-color: #4caf50;
+}
+
+#word-list-selection input[type="checkbox"]:checked + span:before {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 7px;
+    width: 5px;
+    height: 10px;
+    border: solid #ffffff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}

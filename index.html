@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="images/icon.png">
+    <title>單字測驗</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="counter" style="display: none;">0 / 0</div>
+
+    <h1>單字測驗</h1>
+
+    <div id="word-list-selection">
+        <h2>選擇範圍</h2>
+        <div class="options-container">
+            <label>
+                <input type="checkbox" value="B3L7">
+                <span></span>
+                B3L7
+            </label>
+            <label>
+                <input type="checkbox" value="B3L8">
+                <span></span>
+                B3L8
+            </label>
+            <label>
+                <input type="checkbox" value="B3L9">
+                <span></span>
+                B3L9
+            </label>
+        </div>
+    </div>
+
+    <div id="word-card" style="display: none;">
+        <p id="chinese"></p>
+        <p id="hint"></p>
+        <input type="text" id="answer" placeholder="輸入答案">
+        <br>
+        <p id="result"></p>
+    </div>
+    
+    <button onclick="start()">開始</button>
+
+    <script src="words.js"></script>
+    <script src="script.js?v=1.0"></script>
+</body>
+</html>
