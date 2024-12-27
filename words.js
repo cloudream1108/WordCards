@@ -39,7 +39,7 @@ let wordLists = {
         { "english": "fellow", "chinese": "adj. 同伴的；同事的／n. 同事；同輩" },
         { "english": "account for", "chinese": "(數量上)佔⋯⋯" },
         { "english": "as well", "chinese": "此外；也" },
-        { "english": "in the case of …", "chinese": "關於；在⋯⋯的情況下" },
+        { "english": "in the case of ...", "chinese": "關於；在⋯⋯的情況下" },
         { "english": "under the circumstances", "chinese": "在這種情況下" },
         { "english": "follow suit", "chinese": "照著做" },
         { "english": "aside from", "chinese": "除了⋯⋯之外" },
