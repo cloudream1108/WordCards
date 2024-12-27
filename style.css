@@ -201,16 +201,16 @@ button:hover {
     }
 
     #word-list-selection {
-        display: flex;
-        flex-wrap: nowrap;
-        justify-content: center;
-        overflow-x: auto;
-        white-space: nowrap;
         padding: 2%;
         font-size: 0.8rem;
     }
 
     #word-list-selection .options-container {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: center;
+        overflow-x: auto;
+        white-space: nowrap;
         gap: 5%;
     }
 
