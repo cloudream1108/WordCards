@@ -114,19 +114,42 @@ function checkAnswer() {
     // 如果所有單字都答對
     if (correctCount === len && index === len) {
         result.textContent = "全部答對！🎊";
-        dynamicConfetti(); // 觸發彩帶
+        launchConfetti(); // 觸發彩帶
+        // word-card 隱藏
+        document.getElementById("word-card").style.display = "none";
+        document.getElementById("counter").style.display = "none";
     } else {
         displayQuestion(); // 顯示下一題
     }
 }
 
 // 彩帶
-function dynamicConfetti() {
+function launchConfetti() {
     const duration = 3000; // 彩帶持續時間 (毫秒)
     const end = Date.now() + duration;
 
+    // 建立黑色半透明遮罩
+    const overlay = document.createElement("div");
+    overlay.id = "celebration-overlay";
+    document.body.appendChild(overlay);
+
+    // 建立提示文字
+    const celebrationText = document.createElement("div");
+    celebrationText.id = "celebration-text";
+    celebrationText.textContent = "全部答對！🎊";
+
+    // 加入畫面
+    document.body.appendChild(celebrationText);
+    
+    // 設定文字在動畫結束後移除
+    setTimeout(() => {
+        celebrationText.remove();
+        overlay.remove();
+    }, 5000); // 文字持續 5 秒
+
     (function frame() {
         confetti({
+            scalar: 2, // 彩帶大小
             particleCount: 5, // 每次產生的粒子數量
             angle: Math.random() * 360, // 隨機角度
             spread: Math.random() * 100 + 50, // 擴散範圍
