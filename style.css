@@ -151,7 +151,7 @@ button:hover {
 /* 響應式設計 */
 
 /* 手機 */
-@media (max-width: 700px) {
+@media (max-width: 1000px) {
     html, body {
         height: 100%;
         margin: 0;
