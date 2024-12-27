@@ -75,8 +75,8 @@ function hintText() {
     for (let i=0; i < arr.length; i++) {
         let word = arr[i];
         if (word == '...') text += '... ';
-        else if (word.length <= 2) text += `${word} `;
-        else text += `${word[0]}___${word[word.length - 1]} `;
+        else if (word.length <= 2) text += `__ `;
+        else text += `${word[0]}____${word[word.length - 1]} `;
     }
     return text;
 }
@@ -99,11 +99,11 @@ function checkAnswer() {
 
     if (answer === currentWord.english) {
         correctCount++;
-        result.textContent = "正確！🎉";
-        result.style.color = "green";
+        result.textContent = "正確🎉";
+        result.style.color = "#4CAF50";
     } else {
         result.textContent = `${currentWord.chinese} - ${currentWord.english}`;
-        result.style.color = "red";
+        result.style.color = "#FF6961";
     }
     index++;
     updateCounter();
