@@ -78,9 +78,8 @@ function hintText() {
     let arr = currentWord.english.split(' ');
     for (let i=0; i < arr.length; i++) {
         let word = arr[i];
-        if (word == '...') text += '... ';
-        else if (word.length <= 2) text += `__ `;
-        else text += `${word[0]}____${word[word.length - 1]} `;
+        if (word.length <= 2) text += `__  `;
+        else text += `${word[0]}____${word[word.length - 1]}  `;
     }
     return text;
 }
