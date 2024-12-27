@@ -79,8 +79,9 @@ function hintText() {
     for (let i=0; i < arr.length; i++) {
         let word = arr[i];
         if (word.length <= 3) text += `___　`;
-        else text += `${word[0]}____${word[word.length - 1]}　`;
+        else text += `${word[0]}___${word[word.length - 1]}　`;
     }
+    text = text.slice(0, -1);
     return text;
 }
 
@@ -115,6 +116,10 @@ function checkAnswer() {
     if (correctCount === len && index === len) {
         result.textContent = "全部答對！🎊";
         launchConfetti(); // 觸發彩帶
+        // word-card 隱藏
+        document.getElementById("word-card").style.display = "none";
+        document.getElementById("counter").style.display = "none";
+    } else if (index === len) {
         // word-card 隱藏
         document.getElementById("word-card").style.display = "none";
         document.getElementById("counter").style.display = "none";
