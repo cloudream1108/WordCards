@@ -21,6 +21,10 @@ function start() {
     }
     // 未選擇範圍
     else {
+        // word-card 隱藏
+        document.getElementById("word-card").style.display = "none";
+        document.getElementById("counter").style.display = "none";
+        
         alert("請選擇單字範圍");
     }
 }
