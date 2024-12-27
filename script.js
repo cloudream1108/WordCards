@@ -114,40 +114,31 @@ function checkAnswer() {
     // 如果所有單字都答對
     if (correctCount === len && index === len) {
         result.textContent = "全部答對！🎊";
-        launchConfetti(); // 觸發彩帶
+        dynamicConfetti(); // 觸發彩帶
     } else {
         displayQuestion(); // 顯示下一題
     }
 }
 
-// 創建彩帶效果
-function launchConfetti() {
-    const container = document.createElement("div");
-    container.id = "confetti-container";
-    document.body.appendChild(container);
+// 彩帶
+function dynamicConfetti() {
+    const duration = 3000; // 彩帶持續時間 (毫秒)
+    const end = Date.now() + duration;
 
-    // 生成多個彩帶
-    for (let i = 0; i < 500; i++) {
-        const confetti = document.createElement("div");
-        confetti.classList.add("confetti");
+    (function frame() {
+        confetti({
+            particleCount: 5, // 每次產生的粒子數量
+            angle: Math.random() * 360, // 隨機角度
+            spread: Math.random() * 100 + 50, // 擴散範圍
+            origin: {
+                x: Math.random(), // 隨機 X 軸位置
+                y: Math.random() - 0.2, // 隨機 Y 軸位置
+            },
+            colors: ["#f08", "#0ff", "#80f", "#fa0", "#0f0"], // 彩帶顏色
+        });
 
-        // 隨機設定彩帶的位置與顏色
-        confetti.style.left = Math.random() * 100 + "vw";
-        confetti.style.backgroundColor = getRandomColor();
-        confetti.style.animationDelay = Math.random() * 3 + "s";
-        confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
-        
-        container.appendChild(confetti);
-    }
-
-    // 自動清除彩帶容器（4秒後）
-    setTimeout(() => {
-        document.body.removeChild(container);
-    }, 10000);
-}
-
-// 隨機顏色生成
-function getRandomColor() {
-    const colors = ["#FF5733", "#FFBD33", "#33FF57", "#33FFF3", "#335BFF", "#A633FF"];
-    return colors[Math.floor(Math.random() * colors.length)];
+        if (Date.now() < end) {
+            requestAnimationFrame(frame); // 讓彩帶效果持續
+        }
+    })();
 }
