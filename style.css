@@ -159,18 +159,18 @@ button:hover {
     }
 
     h1 {
-        top: 3%;
+        top: 5%;
         margin-bottom: 3%;
         font-size: 2rem;
     }
 
     #counter {
-        width: 100%;
+        width: auto;
         top: 1%;
         right: 1%;
         padding: 5%;
         margin: 1%;
-        font-size: 1rem;
+        font-size: 0.5rem;
     }
 
     #word-card {
