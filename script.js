@@ -110,5 +110,44 @@ function checkAnswer() {
     }
     index++;
     updateCounter();
-    displayQuestion();
+    
+    // 如果所有單字都答對
+    if (correctCount === len && index === len) {
+        result.textContent = "全部答對！🎊";
+        launchConfetti(); // 觸發彩帶
+    } else {
+        displayQuestion(); // 顯示下一題
+    }
+}
+
+// 創建彩帶效果
+function launchConfetti() {
+    const container = document.createElement("div");
+    container.id = "confetti-container";
+    document.body.appendChild(container);
+
+    // 生成多個彩帶
+    for (let i = 0; i < 100; i++) {
+        const confetti = document.createElement("div");
+        confetti.classList.add("confetti");
+
+        // 隨機設定彩帶的位置與顏色
+        confetti.style.left = Math.random() * 100 + "vw";
+        confetti.style.backgroundColor = getRandomColor();
+        confetti.style.animationDelay = Math.random() * 3 + "s";
+        confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+        
+        container.appendChild(confetti);
+    }
+
+    // 自動清除彩帶容器（3秒後）
+    setTimeout(() => {
+        document.body.removeChild(container);
+    }, 3000);
+}
+
+// 隨機顏色生成
+function getRandomColor() {
+    const colors = ["#FF5733", "#FFBD33", "#33FF57", "#33FFF3", "#335BFF", "#A633FF"];
+    return colors[Math.floor(Math.random() * colors.length)];
 }

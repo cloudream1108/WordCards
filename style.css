@@ -148,6 +148,40 @@ button:hover {
     transform: rotate(45deg);
 }
 
+/* 彩帶容器 */
+#confetti-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* 不影響用戶操作 */
+    overflow: hidden;
+    z-index: 9999;
+}
+
+/* 彩帶樣式 */
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 30px;
+    background-color: transparent;
+    animation: fall 3s linear infinite;
+    opacity: 0.8;
+}
+
+/* 彩帶掉落動畫 */
+@keyframes fall {
+    0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
 /* 響應式設計 */
 
 /* 手機 */
@@ -165,6 +199,7 @@ button:hover {
     }
 
     #counter {
+        background-color: rgba(0, 0, 0, 0); /* 透明背景 */
         width: auto;
         top: 1%;
         right: 1%;
