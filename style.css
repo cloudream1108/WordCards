@@ -168,6 +168,7 @@ button:hover {
         width: 100%;
         top: 1%;
         right: 1%;
+        padding: 5%;
         margin: 1%;
         font-size: 1rem;
     }
@@ -201,7 +202,9 @@ button:hover {
     }
 
     #word-list-selection {
+        width: 100%;
         padding: 2%;
+        margin: 5% 0%;
         font-size: 0.8rem;
     }
 

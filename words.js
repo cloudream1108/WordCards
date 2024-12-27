@@ -39,7 +39,7 @@ let wordLists = {
         { "english": "fellow", "chinese": "adj. 同伴的；同事的／n. 同事；同輩" },
         { "english": "account for", "chinese": "(數量上)佔⋯⋯" },
         { "english": "as well", "chinese": "此外；也" },
-        { "english": "in the case of ...", "chinese": "關於；在⋯⋯的情況下" },
+        { "english": "in the case of", "chinese": "關於；在⋯⋯的情況下" },
         { "english": "under the circumstances", "chinese": "在這種情況下" },
         { "english": "follow suit", "chinese": "照著做" },
         { "english": "aside from", "chinese": "除了⋯⋯之外" },
@@ -78,7 +78,7 @@ let wordLists = {
         { "english": "intelligent", "chinese": "adj. 聰明的；有才智的" },
         { "english": "intelligence", "chinese": "n. 智力；才智" },
         { "english": "lead to", "chinese": "導致；造成" },
-        { "english": "what's more", "chinese": "此外" },
+        { "english": "what’s more", "chinese": "此外" },
         { "english": "worse still", "chinese": "更糟的是" },
         { "english": "deal with", "chinese": "解決；處理" },
         { "english": "take pleasure in", "chinese": "以⋯⋯為樂；喜歡做⋯⋯" },
@@ -123,9 +123,9 @@ let wordLists = {
         { "english": "designate", "chinese": "vt. 指定；認定" },
         { "english": "heritage", "chinese": "n. (一國家或社會所形成的)遺產" },
         { "english": "set out", "chinese": "出發" },
-        { "english": "send ... off", "chinese": "送行" },
+        { "english": "send off", "chinese": "送行" },
         { "english": "in the meantime", "chinese": "期間；同時" },
         { "english": "all manner of", "chinese": "各式各樣的" },
-        { "english": "be looking to ...", "chinese": "試圖⋯⋯" }
+        { "english": "be looking to", "chinese": "試圖⋯⋯" }
     ]
 };
