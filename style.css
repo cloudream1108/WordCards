@@ -150,33 +150,30 @@ button:hover {
 
 /* 響應式設計 */
 
-/* 平板 */
-@media (min-width: 768px) and (max-width: 1023px) {
-    h1 {
-        font-size: 2.5rem;
-    }
-
-    #counter {
-        font-size: 1.1rem;
-    }
-
-    input {
-        width: 70%;
-    }
-}
-
 /* 手機 */
-@media (max-width: 767px) {
+@media (max-width: 700px) {
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
     h1 {
+        top: 3%;
+        margin-bottom: 3%;
         font-size: 2rem;
     }
 
     #counter {
+        top: 1%;
+        right: 1%;
+        margin: 1%;
         font-size: 1rem;
     }
 
     #word-card {
-        width: 90%;
+        width: 80%;
+        min-height: 15%;
         padding: 15px;
     }
 
@@ -186,7 +183,8 @@ button:hover {
 
     button {
         width: 50%;
-        padding: 10px;
+        height: auto;
+        padding: 7px;
         font-size: 1rem;
         border: none;
         color: #fff;
@@ -194,6 +192,22 @@ button:hover {
     }
 
     .word-card p {
+        font-size: 1rem;
+    }
+
+    #chinese, #hint, #result {
+        font-size: 1.3rem;
+    }
+
+    #word-list-selection {
+        font-size: 0.8rem;
+    }
+
+    #word-list-selection .options-container {
+        gap: 5%;
+    }
+
+    #word-list-selection label {
         font-size: 1rem;
     }
 }
