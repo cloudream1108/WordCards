@@ -201,6 +201,7 @@ button:hover {
     }
 
     #word-list-selection {
+        flex-wrap: nowrap;
         font-size: 0.8rem;
     }
 
