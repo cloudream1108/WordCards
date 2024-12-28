@@ -4,6 +4,7 @@ const chinese = document.getElementById("chinese");
 const hint = document.getElementById("hint");
 const ans = document.getElementById("answer");
 const result = document.getElementById("result");
+const startButton = document.getElementById("start");
 
 let words = [];        // 單字表
 let shuffleWords = []; // 隨機排序單字表
@@ -81,12 +82,14 @@ function hintText() {
 
 // word-card 顯示
 function showCard() {
+    startButton.textContent = "重新開始";
     wordCard.style.display = "block";
     counter.style.display = "block";
 }
 
 // word-card 隱藏
 function hideCard() {
+    startButton.textContent = "開始";
     wordCard.style.display = "none";
     counter.style.display = "none";
     ans.value = "";
