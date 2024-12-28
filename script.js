@@ -1,105 +1,39 @@
+const wordCard = document.getElementById("word-card");
+const counter = document.getElementById("counter");
+const chinese = document.getElementById("chinese");
+const hint = document.getElementById("hint");
+const ans = document.getElementById("answer");
+const result = document.getElementById("result");
+
 let words = [];        // 單字表
 let shuffleWords = []; // 隨機排序單字表
 let currentWord = {};  // 當前測驗的單字
 let index = 0;         // 目前單字索引
 let len = 0;           // 單字數
 let correctCount = 0;  // 回答正確數
+let linkText = "https://dictionary.cambridge.org/zht/詞典/英語-漢語-繁體/";
 
 // 開始
 function start() {
     reset();
     selectedWords();
     if (len > 0) {
-        // word-card 顯示
-        document.getElementById("word-card").style.display = "block";
-        document.getElementById("counter").style.display = "block";
-        
         shuffleWords = shuffleArray(words);
         currentWord = shuffleWords[0];
         updateCounter();
         displayQuestion();
+        showCard();
     }
     // 未選擇範圍
     else {
-        // word-card 隱藏
-        document.getElementById("word-card").style.display = "none";
-        document.getElementById("counter").style.display = "none";
-        
+        hideCard();
         alert("請選擇單字範圍");
     }
 }
 
-// 歸零
-function reset() {
-    words = [];
-    shuffleWords = [];
-    currentWord = {};
-    index = 0;
-    len = 0;
-    correctCount = 0;
-}
-
-// 範圍選擇
-function selectedWords() {
-    const checkboxes = document.querySelectorAll("#word-list-selection input:checked");
-    checkboxes.forEach(checkbox => {
-        words = words.concat(wordLists[checkbox.value]);
-    });
-    // 更新單字數
-    len = words.length;
-}
-
-// enter 送出
-let body = document.body;
-body.addEventListener('keydown', key, false);
-function key(e) {
-    if (e.keyCode == 13) checkAnswer();
-}
-
-// 計數器顯示
-function updateCounter() {
-    const counter = document.getElementById("counter");
-    counter.textContent = `${correctCount} / ${len}`;
-}
-
-// Fisher-Yates 洗牌演算法
-function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        // 交換元素
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-}
-
-// 生成英文提示
-function hintText() {
-    let text = ``;
-    let arr = currentWord.english.split(' ');
-    for (let i=0; i < arr.length; i++) {
-        let word = arr[i];
-        if (word.length <= 3) text += `___　`;
-        else text += `${word[0]}___${word[word.length - 1]}　`;
-    }
-    text = text.slice(0, -1);
-    return text;
-}
-
-// 顯示提示與中文
-function displayQuestion() {
-    currentWord = shuffleWords[index];
-    const chinese = document.getElementById("chinese");
-    const hint = document.getElementById("hint");
-
-    chinese.textContent = `${currentWord.chinese}`;
-    hint.textContent = hintText();
-    document.getElementById("answer").value = ""; // 清空答案輸入框
-}
-
 // 檢查答案
 function checkAnswer() {
-    const answer = document.getElementById("answer").value.trim().toLowerCase();
-    const result = document.getElementById("result");
+    const answer = document.getElementById("answer").value.trim();
 
     if (answer === currentWord.english) {
         correctCount++;
@@ -116,16 +50,106 @@ function checkAnswer() {
     if (correctCount === len && index === len) {
         result.textContent = "全部答對！🎊";
         launchConfetti(); // 觸發彩帶
-        // word-card 隱藏
-        document.getElementById("word-card").style.display = "none";
-        document.getElementById("counter").style.display = "none";
     } else if (index === len) {
-        // word-card 隱藏
-        document.getElementById("word-card").style.display = "none";
-        document.getElementById("counter").style.display = "none";
+        hideCard();
     } else {
         displayQuestion(); // 顯示下一題
     }
+}
+
+// 顯示提示與中文
+function displayQuestion() {
+    currentWord = shuffleWords[index];
+    link();
+    chinese.textContent = `${currentWord.chinese}`;
+    hint.textContent = hintText();
+    answer.value = ""; // 清空答案輸入框
+}
+
+// 生成英文提示
+function hintText() {
+    let text = ``;
+    let arr = currentWord.english.split(' ');
+    for (let i=0; i < arr.length; i++) {
+        let word = arr[i];
+        if (word.length <= 3) text += `___　`;
+        else text += `${word[0]}___${word[word.length - 1]}　`;
+    }
+    text = text.slice(0, -1);
+    return text;
+}
+
+// word-card 顯示
+function showCard() {
+    wordCard.style.display = "block";
+    counter.style.display = "block";
+}
+
+// word-card 隱藏
+function hideCard() {
+    wordCard.style.display = "none";
+    counter.style.display = "none";
+    ans.value = "";
+}
+
+// 歸零
+function reset() {
+    words = [];
+    shuffleWords = [];
+    currentWord = {};
+    index = 0;
+    len = 0;
+    correctCount = 0;
+    result.textContent = "";
+}
+
+// 範圍選擇
+function selectedWords() {
+    const checkboxes = document.querySelectorAll("#word-list-selection input:checked");
+    checkboxes.forEach(checkbox => {
+        words = words.concat(wordLists[checkbox.value]);
+    });
+    // 更新單字數
+    len = words.length;
+}
+
+// enter 送出
+document.body.addEventListener('keydown', key, false);
+function key(e) {
+    if (e.keyCode == 13) checkAnswer();
+}
+
+// 點擊看字典
+hint.addEventListener("click", function() {
+    window.open(linkText, "_blank");
+})
+
+// 計數器顯示
+function updateCounter() {
+    const counter = document.getElementById("counter");
+    counter.textContent = `${correctCount} / ${len}`;
+}
+
+// 連結至劍橋辭典
+function link() {
+    linkText = "https://dictionary.cambridge.org/zht/詞典/英語-漢語-繁體/";
+    let arr = currentWord.english.split(' ');
+    for (let i=0; i < arr.length; i++) {
+        linkText += arr[i];
+        if (i !== arr.length - 1) {
+            linkText += "-";
+        }
+    }
+}
+
+// Fisher-Yates 洗牌演算法
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        // 交換元素
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
 }
 
 // 彩帶
