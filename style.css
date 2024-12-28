@@ -266,10 +266,22 @@ button:hover {
         justify-content: center;
         overflow-x: auto;
         white-space: nowrap;
-        gap: 5%;
+        gap: 3%;
     }
 
     #word-list-selection label {
         font-size: 1rem;
+    }
+
+    #word-list-selection input[type="checkbox"] + span {
+        width: 15px;
+        height: 15px;
+    }
+
+    #word-list-selection input[type="checkbox"]:checked + span:before {
+        top: 3px;
+        left: 5px;
+        width: 3px;
+        height: 7px;
     }
 }
