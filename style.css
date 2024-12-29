@@ -202,7 +202,7 @@ button:hover {
 /* 響應式設計 */
 
 /* 手機 */
-@media (max-width: 1000px) {
+@media (max-width: 600px) {
     html, body {
         height: 100%;
         margin: 0;

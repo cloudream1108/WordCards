@@ -9,6 +9,7 @@ const startButton = document.getElementById("start");
 let words = [];        // 單字表
 let shuffleWords = []; // 隨機排序單字表
 let currentWord = {};  // 當前測驗的單字
+let wrongAnswers = []; // 錯誤的答案
 let index = 0;         // 目前單字索引
 let len = 0;           // 單字數
 let correctCount = 0;  // 回答正確數
@@ -34,25 +35,29 @@ function start() {
 
 // 檢查答案
 function checkAnswer() {
-    const answer = document.getElementById("answer").value.trim();
+    // 去除頭尾多餘的空白 + 全部轉小寫
+    const answer = document.getElementById("answer").value.trim().toLowerCase();
 
     if (answer === currentWord.english) {
         correctCount++;
         result.textContent = "正確🎉";
         result.style.color = "#4CAF50";
     } else {
+        wrongAnswers.push({
+            chinese: currentWord.chinese,
+            correctAnswer: currentWord.english,
+            yourAnswer: answer
+        });
         result.textContent = `${currentWord.chinese} - ${currentWord.english}`;
         result.style.color = "#FF6961";
     }
     index++;
     updateCounter();
-    
+
     // 如果所有單字都答對
-    if (correctCount === len && index === len) {
-        result.textContent = "全部答對！🎊";
-        launchConfetti(); // 觸發彩帶
-    } else if (index === len) {
+    if (index >= len) {
         hideCard();
+        endQuiz();
     } else {
         displayQuestion(); // 顯示下一題
     }
@@ -71,7 +76,7 @@ function displayQuestion() {
 function hintText() {
     let text = ``;
     let arr = currentWord.english.split(' ');
-    for (let i=0; i < arr.length; i++) {
+    for (let i = 0; i < arr.length; i++) {
         let word = arr[i];
         if (word.length <= 3) text += `___　`;
         else text += `${word[0]}___${word[word.length - 1]}　`;
@@ -100,6 +105,7 @@ function reset() {
     words = [];
     shuffleWords = [];
     currentWord = {};
+    wrongAnswers = [];
     index = 0;
     len = 0;
     correctCount = 0;
@@ -123,7 +129,7 @@ function key(e) {
 }
 
 // 點擊看字典
-hint.addEventListener("click", function() {
+hint.addEventListener("click", function () {
     window.open(linkText, "_blank");
 })
 
@@ -137,7 +143,7 @@ function updateCounter() {
 function link() {
     linkText = "https://dictionary.cambridge.org/zht/詞典/英語-漢語-繁體/";
     let arr = currentWord.english.split(' ');
-    for (let i=0; i < arr.length; i++) {
+    for (let i = 0; i < arr.length; i++) {
         linkText += arr[i];
         if (i !== arr.length - 1) {
             linkText += "-";
@@ -172,7 +178,7 @@ function launchConfetti() {
 
     // 加入畫面
     document.body.appendChild(celebrationText);
-    
+
     // 設定文字在動畫結束後移除
     setTimeout(() => {
         celebrationText.remove();
@@ -196,4 +202,47 @@ function launchConfetti() {
             requestAnimationFrame(frame); // 讓彩帶效果持續
         }
     })();
+}
+
+function endQuiz() {
+    if (wrongAnswers.length > 0) {
+        const wrongData = JSON.stringify(wrongAnswers);
+        const newWindow = window.open("", "_blank");
+        newWindow.document.write(`
+            <html>
+            <head>
+                <title>Wrong Answers</title>
+                <link rel="stylesheet" href="wrongAnswers.css">
+            </head>
+            <body>
+                <h1>WRONG ANSWERS</h1>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>中文</th>
+                            <th>正確答案</th>
+                            <th>你的答案</th>
+                        </tr>
+                    </thead>
+                    <tbody id="wrongList"></tbody>
+                </table>
+            </body>
+            <script>
+                const wrongAnswers = ${wrongData};
+                const tbody = document.getElementById("wrongList");
+                wrongAnswers.forEach(item => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = \`
+                        <td>\${item.chinese}</td>
+                        <td>\${item.correctAnswer}</td>
+                        <td>\${item.yourAnswer}</td>
+                    \`;
+                    tbody.appendChild(row);
+                });
+            </script>
+            </html>
+        `);
+    } else {
+        launchConfetti(); // 觸發彩帶
+    }
 }
