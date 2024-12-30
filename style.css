@@ -32,6 +32,7 @@ h1 {
 
 /* 單字卡樣式 */
 #word-card {
+    position: relative; /* 讓子元素可以基於 .word-card 定位 */
     background-color: #2d2d2d;  /* 暗色卡片背景 */
     padding: 20px;
     border-radius: 10px;
@@ -53,6 +54,10 @@ h1 {
 
 /* 輸入框樣式 */
 input[type="text"] {
+    position: absolute; /* 絕對定位 */
+    top: 50%; /* 將輸入框向下移到單字卡的正中央 */
+    left: 50%; /* 將輸入框水平移到單字卡的正中央 */
+    transform: translate(-50%, -50%); /* 修正中心點的偏移 */
     width: 80%;
     padding: 12px;
     margin-top: 10px;
@@ -72,6 +77,10 @@ input[type="text"]:focus {
 
 /* 結果顯示樣式 */
 #result {
+    position: absolute; /* 絕對定位 */
+    top: 70%;
+    left: 50%; /* 將輸入框水平移到單字卡的正中央 */
+    transform: translate(-50%, -50%); /* 修正中心點的偏移 */
     margin-top: 20px;
     font-size: 20px; /* 增大結果顯示文字大小 */
     word-wrap: break-word; /* 確保結果自動換行 */
@@ -226,13 +235,17 @@ button:hover {
     }
 
     #word-card {
+        height: auto;
         width: 80%;
-        min-height: 15%;
+        min-height: 20%;
         padding: 15px;
+        font-size: 1rem;
     }
 
     input {
         width: 90%;
+        padding: 10px;
+        font-size: 1rem;
     }
 
     button {
@@ -249,8 +262,18 @@ button:hover {
         font-size: 1rem;
     }
 
-    #chinese, #hint, #result {
-        font-size: 1.3rem;
+    #chinese, #hint {
+        padding: 1%;
+        margin: 1%;
+        width: 100%;
+        font-size: 1.1rem;
+    }
+
+    #result {
+        padding: 1%;
+        margin-top: 7%;
+        width: 90%;
+        font-size: 1.1rem;
     }
 
     #word-list-selection {

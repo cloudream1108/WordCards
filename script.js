@@ -6,6 +6,7 @@ const ans = document.getElementById("answer");
 const result = document.getElementById("result");
 const startButton = document.getElementById("start");
 
+let mode = true;
 let words = [];        // 單字表
 let shuffleWords = []; // 隨機排序單字表
 let currentWord = {};  // 當前測驗的單字
@@ -68,7 +69,7 @@ function displayQuestion() {
     currentWord = shuffleWords[index];
     link();
     chinese.textContent = `${currentWord.chinese}`;
-    hint.textContent = hintText();
+    if (mode) hint.textContent = hintText();
     answer.value = ""; // 清空答案輸入框
 }
 
@@ -131,6 +132,11 @@ function key(e) {
 // 點擊看字典
 hint.addEventListener("click", function () {
     window.open(linkText, "_blank");
+})
+
+document.getElementById("title").addEventListener("click", function () {
+    hint.textContent = "";
+    mode = !mode;
 })
 
 // 計數器顯示
