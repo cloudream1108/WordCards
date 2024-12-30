@@ -135,8 +135,9 @@ hint.addEventListener("click", function () {
 })
 
 document.getElementById("title").addEventListener("click", function () {
-    hint.textContent = "";
     mode = !mode;
+    if (mode) hint.textContent = hintText();
+    else hint.textContent = "";
 })
 
 // 計數器顯示
