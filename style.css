@@ -236,9 +236,9 @@ button:hover {
 
     #word-card {
         height: auto;
+        padding: 10px;
         width: 80%;
-        min-height: 20%;
-        padding: 15px;
+        min-height: 25%;
         font-size: 1rem;
     }
 
@@ -263,17 +263,24 @@ button:hover {
     }
 
     #chinese, #hint {
-        padding: 1%;
-        margin: 1%;
+        flex: 1 1 100%;
+        font-size: clamp(1rem, 5vw, 1.1rem); /* 動態字體大小 */
+        margin-bottom: 10px;
+        white-space: nowrap; /* 禁止換行 */
         width: 100%;
-        font-size: 1.1rem;
+    }
+
+    #hint {
+        font-size: clamp(1rem, 6vw, 1.2rem); /* 動態字體大小 */
     }
 
     #result {
-        padding: 1%;
-        margin-top: 7%;
-        width: 90%;
-        font-size: 1.1rem;
+        font-size: clamp(1rem, 4vw, 1.2rem); /* 動態字體大小 */
+        margin-bottom: 10px;
+        white-space: nowrap; /* 禁止換行 */
+        flex: 1 1 100%;
+        padding: auto;
+        width: 100%;
     }
 
     #word-list-selection {

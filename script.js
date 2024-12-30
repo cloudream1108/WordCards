@@ -49,7 +49,7 @@ function checkAnswer() {
             correctAnswer: currentWord.english,
             yourAnswer: answer
         });
-        result.textContent = `${currentWord.chinese} - ${currentWord.english}`;
+        result.innerHTML = `${currentWord.chinese}<br>${currentWord.english}`;
         result.style.color = "#FF6961";
     }
     index++;
